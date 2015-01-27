@@ -31,10 +31,11 @@ describe TreeDelta do
 
     expect(operations).to eq [
       TreeDelta::Operation.new(type: :detach, id: "e"),
+      TreeDelta::Operation.new(type: :delete, id: "b"),
       TreeDelta::Operation.new(type: :detach, id: "d"),
       TreeDelta::Operation.new(type: :detach, id: "a"),
       TreeDelta::Operation.new(type: :delete, id: "alpha"),
-      TreeDelta::Operation.new(type: :create, id: "beta", position: 0),
+      TreeDelta::Operation.new(type: :create, id: "beta", value: "value", position: 0),
       TreeDelta::Operation.new(type: :attach, id: "a", parent: "beta", position: 0),
       TreeDelta::Operation.new(type: :attach, id: "d", parent: "a", position: 0),
       TreeDelta::Operation.new(type: :attach, id: "e", parent: "beta", position: 1)
