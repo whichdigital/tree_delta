@@ -1,5 +1,7 @@
 class TreeDelta < Enumerator
 
+  attr_reader :from, :to
+
   def initialize(from:, to:)
     @from, @to = from, to
   end
@@ -19,7 +21,9 @@ class TreeDelta < Enumerator
       order:     :post
     )
 
-    MessageSorter.sort(deletes + detaches, traversal)
+    enumerator = traversal.traverse(from)
+
+    Sorter.sort(deletes + detaches, enumerator)
   end
 
   def creates_and_attaches
@@ -29,7 +33,9 @@ class TreeDelta < Enumerator
       order:     :pre
     )
 
-    MessageSorter.sort(creates + attaches, traversal)
+    enumerator = traversal.traverse(to)
+
+    Sorter.sort(creates + attaches, enumerator)
   end
 
   def creates

@@ -9,4 +9,5 @@ Gem::Specification.new do |s|
   s.files       = ["README.md"] + Dir["lib/**/*.*"]
 
   s.add_development_dependency "rspec"
+  s.add_development_dependency "pry"
 end

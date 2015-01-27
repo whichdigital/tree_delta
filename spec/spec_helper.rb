@@ -1,4 +1,5 @@
 require "rspec"
+require "pry"
 require "tree_delta"
 
 RSpec.configure do |config|
