@@ -52,6 +52,9 @@ You must first define a node class with the following methods:
 #id
 Returns an identifier that uniquely identifies the node across trees.
 
+#parent
+Returns the parent of the node.
+
 #children
 Returns an array of child nodes.
 

@@ -7,9 +7,9 @@ class TreeDelta < Enumerator
   end
 
   def each(&block)
-    deletes_and_detaches.each { |m| yield m }
-    creates_and_attaches.each { |m| yield m }
-    updates.each              { |m| yield m }
+    deletes_and_detaches.each { |o| yield o }
+    creates_and_attaches.each { |o| yield o }
+    updates.each              { |o| yield o }
   end
 
   private
@@ -23,7 +23,7 @@ class TreeDelta < Enumerator
 
     enumerator = traversal.traverse(from)
 
-    Sorter.sort(deletes + detaches, enumerator)
+    Sorter.sort(deletes.to_a + detaches.to_a, enumerator)
   end
 
   def creates_and_attaches
@@ -35,27 +35,31 @@ class TreeDelta < Enumerator
 
     enumerator = traversal.traverse(to)
 
-    Sorter.sort(creates + attaches, enumerator)
+    Sorter.sort(creates.to_a + attaches.to_a, enumerator)
   end
 
   def creates
-    []
+    intermediate.creates
   end
 
   def updates
-    []
+    intermediate.updates
   end
 
   def deletes
-    []
+    intermediate.deletes
   end
 
   def detaches
-    []
+    intermediate.detaches
   end
 
   def attaches
-    []
+    intermediate.attaches
+  end
+
+  def intermediate
+    @intermediate ||= Intermediate.new(from: from, to: to)
   end
 
 end

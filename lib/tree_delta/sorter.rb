@@ -1,4 +1,4 @@
-module Sorter
+module TreeDelta::Sorter
   def self.sort(array, enumerator)
     sorted_array = []
 
