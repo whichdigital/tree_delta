@@ -1,13 +1,6 @@
 require "spec_helper"
 
 describe TreeDelta do
-  class Node
-    attr_reader :id, :children
-
-    def initialize(id, children: [])
-      @id, @children = id, children
-    end
-  end
 
   it "works for the example in the readme" do
     alpha = Node.new("alpha", children: [
@@ -37,16 +30,14 @@ describe TreeDelta do
     end
 
     expect(operations).to eq [
-      # TODO
-      #
-      # detach 'e'
-      # detach 'd'
-      # detach 'a'
-      # delete 'alpha'
-      # create 'beta' as root
-      # attach 'a' to 'beta' at position 0
-      # attach 'd' to 'a' at position 0
-      # attach 'e' to 'beta' at position 1
+      TreeDelta::Operation.new(type: :detach, id: "e"),
+      TreeDelta::Operation.new(type: :detach, id: "d"),
+      TreeDelta::Operation.new(type: :detach, id: "a"),
+      TreeDelta::Operation.new(type: :delete, id: "alpha"),
+      TreeDelta::Operation.new(type: :create, id: "beta", position: 0),
+      TreeDelta::Operation.new(type: :attach, id: "a", parent: "beta", position: 0),
+      TreeDelta::Operation.new(type: :attach, id: "d", parent: "a", position: 0),
+      TreeDelta::Operation.new(type: :attach, id: "e", parent: "beta", position: 1)
     ]
   end
 end
