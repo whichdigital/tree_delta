@@ -15,24 +15,14 @@ class TreeDelta < Enumerator
   private
 
   def deletes_and_detaches
-    traversal = Traversal.new(
-      type:      :depth_first,
-      direction: :right_to_left,
-      order:     :post
-    )
-
+    traversal = Traversal.new(direction: :right_to_left, order: :post)
     enumerator = traversal.traverse(from)
 
     Sorter.sort(deletes.to_a + detaches.to_a, enumerator)
   end
 
   def creates_and_attaches
-    traversal = Traversal.new(
-      type:      :depth_first,
-      direction: :left_to_right,
-      order:     :pre
-    )
-
+    traversal = Traversal.new(direction: :left_to_right, order: :pre)
     enumerator = traversal.traverse(to)
 
     Sorter.sort(creates.to_a + attaches.to_a, enumerator)

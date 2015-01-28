@@ -1,13 +1,10 @@
 class TreeDelta::Traversal < Enumerator
 
-  attr_reader :type, :direction, :order
+  attr_reader :direction, :order
 
-  def initialize(type:, direction:, order:)
-    @type      = type
+  def initialize(direction:, order:)
     @direction = direction
     @order     = order
-
-    raise NotImplementedError if type != :depth_first
   end
 
   def traverse(node)

@@ -97,12 +97,7 @@ class TreeDelta::Intermediate
   end
 
   def nodes(tree)
-    traversal = TreeDelta::Traversal.new(
-      type:      :depth_first,
-      direction: :left_to_right,
-      order:     :pre
-    )
-
+    traversal = TreeDelta::Traversal.new(direction: :left_to_right, order: :pre)
     traversal.traverse(tree).to_a
   end
 
