@@ -7,18 +7,20 @@ RSpec.configure do |config|
 end
 
 class Node
-  attr_reader :id, :children, :parent
+  attr_reader :id, :children, :parent, :value
 
-  def initialize(id, children: [])
-    @id, @children = id, children
+  def initialize(first, children: [])
+    if Array === id
+      @id, @value = *first
+    else
+      @id, @value = *first, "value"
+    end
+
+    @children = children
 
     children.each do |child|
       child.parent = self
     end
-  end
-
-  def value
-    "value"
   end
 
   protected

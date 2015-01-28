@@ -5,12 +5,12 @@ describe TreeDelta::Intermediate do
 
   let(:from) do
     n("a",
-      n("b",
+      n(["b", "old_value_1"],
         n("e"),
         n("f")
       ),
       n("d"),
-      n("c"),
+      n(["c", "old_value_2"]),
       n("x",
         n("y"),
         n("z")
@@ -24,9 +24,9 @@ describe TreeDelta::Intermediate do
         n("z"),
         n("y")
       ),
-      n("c"),
+      n(["c", "new_value_2"]),
       n("e",
-        n("b"),
+        n(["b", "new_value_1"]),
         n("f")
       ),
       n("g")
@@ -49,7 +49,21 @@ describe TreeDelta::Intermediate do
   end
 
   describe "#updates" do
-    pending "TODO"
+    it "enumerates update operations" do
+      expect(subject.updates).to be_an(Enumerator)
+      expect(subject.updates.to_a).to match_array [
+        TreeDelta::Operation.new(
+          type:  :update,
+          id:    "b",
+          value: "new_value_1"
+        ),
+        TreeDelta::Operation.new(
+          type:  :update,
+          id:    "c",
+          value: "new_value_2"
+        ),
+      ]
+    end
   end
 
   describe "#deletes" do

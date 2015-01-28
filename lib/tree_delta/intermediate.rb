@@ -21,7 +21,15 @@ class TreeDelta::Intermediate
   end
 
   def updates
-    [] # TODO
+    Enumerator.new do |y|
+      updated_nodes.each do |node|
+        y.yield TreeDelta::Operation.new(
+          type:     :update,
+          id:       node.id,
+          value:    node.value,
+        )
+      end
+    end
   end
 
   def deletes
@@ -71,6 +79,13 @@ class TreeDelta::Intermediate
 
   def additions
     subtract(to_nodes, from_nodes)
+  end
+
+  def updated_nodes
+    to_nodes.select do |to_node|
+      from_node = from_node_for(to_node)
+      from_node && from_node.value != to_node.value
+    end
   end
 
   def normalised_deletions
@@ -136,6 +151,10 @@ class TreeDelta::Intermediate
     to_node &&
       parent_id(from_node) == parent_id(to_node) &&
       position(from_node) != position(to_node)
+  end
+
+  def from_node_for(to_node)
+    from_nodes.detect { |n| n.id == to_node.id }
   end
 
   def to_node_for(from_node)
