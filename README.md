@@ -29,7 +29,6 @@ Here are the operations for the above example:
 
 ```
 detach 'e'
-delete 'b'
 detach 'd'
 detach 'a'
 delete 'alpha'

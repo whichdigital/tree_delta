@@ -8,7 +8,7 @@ class TreeDelta::Intermediate
 
   def creates
     Enumerator.new do |y|
-      subtract(to_nodes, from_nodes).each do |node|
+      additions.each do |node|
         y.yield TreeDelta::Operation.new(
           type:     :create,
           id:       node.id,
@@ -26,7 +26,7 @@ class TreeDelta::Intermediate
 
   def deletes
     Enumerator.new do |y|
-      subtract(from_nodes, to_nodes).each do |node|
+      normalised_deletions.each do |node|
         y.yield TreeDelta::Operation.new(
           type: :delete,
           id:   node.id
@@ -69,6 +69,18 @@ class TreeDelta::Intermediate
     @to_nodes ||= nodes(to)
   end
 
+  def additions
+    subtract(to_nodes, from_nodes)
+  end
+
+  def normalised_deletions
+    TreeDelta::Normaliser.normalise_deletions(deletions)
+  end
+
+  def deletions
+    subtract(from_nodes, to_nodes)
+  end
+
   def nodes(tree)
     traversal = TreeDelta::Traversal.new(
       type:      :depth_first,
@@ -107,7 +119,10 @@ class TreeDelta::Intermediate
 
   def normalised_position_changes
     groups = position_changes.group_by { |n| parent_id(n) }
-    groups.map { |_, nodes| TreeDelta::Normaliser.normalise(nodes) }.flatten
+
+    groups.map do |_, nodes|
+      TreeDelta::Normaliser.normalise_position_changes(nodes)
+    end.flatten
   end
 
   def position_changes
