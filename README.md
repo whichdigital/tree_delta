@@ -144,6 +144,10 @@ will not yield operations to delete descendants of a node.
 created or attached. Any sibling to the right of the node should have its
 position incremented by one.
 
+- The delta assumes that positions for siblings are updated when a node is
+deleted or detached. Any sibling to the right of the node should have its
+position decremented by one.
+
 ## Contribution
 
 If you'd like to contribute, please open an issue or submit a pull request.
