@@ -14,7 +14,7 @@ class Node
     if Array === id
       @id, @value = *first
     else
-      @id, @value = *first, "value"
+      @id, @value = *first; "value"
     end
 
     @children = children
@@ -32,4 +32,8 @@ end
 # Delete me after tests have been ported to use AsciiTree
 def n(id, *children)
   Node.new(id, children: children)
+end
+
+def do_transform(to, from)
+  described_class.new(from: from, to: to)
 end
