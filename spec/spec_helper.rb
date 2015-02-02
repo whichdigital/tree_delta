@@ -14,7 +14,7 @@ class Node
     if Array === id
       @id, @value = *first
     else
-      @id, @value = *first; "value"
+      @id, @value = *first, "value"
     end
 
     @children = children
