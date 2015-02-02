@@ -4,17 +4,17 @@ describe TreeDelta do
   subject { described_class.new(from: from, to: to) }
 
   let(:from) do
-    n("a",
-      n("b",
-        n("c"),
-        n("d"),
-        n("e")
-       )
-     )
+    AsciiTree.parse('
+            a
+            |
+           (b)
+          / | \
+         c  d  e
+    ')
   end
 
   let(:to) do
-    n("a")
+    AsciiTree.parse('a')
   end
 
   it "does not issue additional deletes for nodes in the subtree" do

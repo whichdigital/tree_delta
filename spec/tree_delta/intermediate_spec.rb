@@ -4,33 +4,23 @@ describe TreeDelta::Intermediate do
   subject { described_class.new(from: from, to: to) }
 
   let(:from) do
-    n("a",
-      n(["b", "old_value_1"],
-        n("e"),
-        n("f")
-      ),
-      n("d"),
-      n(["c", "old_value_2"]),
-      n("x",
-        n("y"),
-        n("z")
-      )
-     )
+    AsciiTree.parse('
+            (   a   )
+            / | |   \
+         b{1} d c{2} x
+         /  \       / \
+        e    f     y   z
+    ')
   end
 
   let(:to) do
-    n("a",
-      n("x",
-        n("z"),
-        n("y")
-      ),
-      n(["c", "new_value_2"]),
-      n("e",
-        n(["b", "new_value_1"]),
-        n("f")
-      ),
-      n("g")
-    )
+    AsciiTree.parse('
+           (    a    )
+           /  |  \   \
+          x  c{4} (e) g
+         / \      / \
+        z   y   b{3} f
+    ')
   end
 
   describe "#creates" do
@@ -40,7 +30,6 @@ describe TreeDelta::Intermediate do
         TreeDelta::Operation.new(
           type:    :create,
           id:      "g",
-          value:   "value",
           parent:  "a",
           position: 3
         )
@@ -55,12 +44,12 @@ describe TreeDelta::Intermediate do
         TreeDelta::Operation.new(
           type:  :update,
           id:    "b",
-          value: "new_value_1"
+          value: 3,
         ),
         TreeDelta::Operation.new(
           type:  :update,
           id:    "c",
-          value: "new_value_2"
+          value: 4
         ),
       ]
     end

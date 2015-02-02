@@ -1,5 +1,6 @@
 require "rspec"
 require "pry"
+require "ascii_tree"
 require "tree_delta"
 
 RSpec.configure do |config|
@@ -28,6 +29,7 @@ class Node
   attr_writer :parent
 end
 
+# Delete me after tests have been ported to use AsciiTree
 def n(id, *children)
   Node.new(id, children: children)
 end

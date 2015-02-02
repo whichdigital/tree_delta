@@ -8,6 +8,8 @@ Gem::Specification.new do |s|
   s.homepage    = "https://github.com/whichdigital/tree_delta"
   s.files       = ["README.md"] + Dir["lib/**/*.*"]
 
+  s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
   s.add_development_dependency "pry"
+  s.add_development_dependency "ascii_tree", "~> 1.0"
 end

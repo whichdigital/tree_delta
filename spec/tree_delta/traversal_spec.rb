@@ -6,15 +6,13 @@ describe TreeDelta::Traversal do
   end
 
   let(:tree) do
-    n("root",
-      n("a",
-        n("c"),
-        n("d")
-       ),
-       n("b",
-         n("e")
-        )
-     )
+    AsciiTree.parse('
+            root
+            /  \
+           a    b
+          / \    \
+         c   d    e
+    ')
   end
 
   let(:ids) { subject.traverse(tree).map(&:id) }
