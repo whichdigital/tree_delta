@@ -32,26 +32,26 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :detach,
-        id: "b",
-        parent: "a",
+        id: 'b',
+        parent: 'a',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: "c",
-        parent: "a",
+        id: 'c',
+        parent: 'a',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "b",
-        parent: "a",
+        id: 'b',
+        parent: 'a',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "c",
-        parent: "a",
+        id: 'c',
+        parent: 'a',
         position: 0
       )
     ]
@@ -76,62 +76,62 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :detach,
-        id: "f",
-        parent: "c",
+        id: 'f',
+        parent: 'c',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: "g",
-        parent: "c",
+        id: 'g',
+        parent: 'c',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: "b",
-        parent: "a",
+        id: 'b',
+        parent: 'a',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: "e",
-        parent: "b",
+        id: 'e',
+        parent: 'b',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: "d",
-        parent: "b",
+        id: 'd',
+        parent: 'b',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "c",
-        parent: "a",
+        id: 'c',
+        parent: 'a',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "d",
-        parent: "c",
+        id: 'd',
+        parent: 'c',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "e",
-        parent: "c",
+        id: 'e',
+        parent: 'c',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "g",
-        parent: "b",
+        id: 'g',
+        parent: 'b',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "f",
-        parent: "b",
+        id: 'f',
+        parent: 'b',
         position: 1
       )
     ]
@@ -155,26 +155,26 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :detach,
-        id: "f",
-        parent: "c",
+        id: 'f',
+        parent: 'c',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: "e",
-        parent: "b",
+        id: 'e',
+        parent: 'b',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "e",
-        parent: "b",
+        id: 'e',
+        parent: 'b',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "f",
-        parent: "c",
+        id: 'f',
+        parent: 'c',
         position: 0
       )
     ]
@@ -198,26 +198,26 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :detach,
-        id: "e",
-        parent: "b",
+        id: 'e',
+        parent: 'b',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: "f",
-        parent: "c",
+        id: 'f',
+        parent: 'c',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "f",
-        parent: "b",
+        id: 'f',
+        parent: 'b',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "e",
-        parent: "c",
+        id: 'e',
+        parent: 'c',
         position: 0
       )
     ]
@@ -241,26 +241,26 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :detach,
-        id: "e",
-        parent: "b",
+        id: 'e',
+        parent: 'b',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: "f",
-        parent: "c",
+        id: 'f',
+        parent: 'c',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "f",
-        parent: "c",
+        id: 'f',
+        parent: 'c',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "e",
-        parent: "a",
+        id: 'e',
+        parent: 'a',
         position: 2
       )
     ]
@@ -284,26 +284,26 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :detach,
-        id: "e",
-        parent: "b",
+        id: 'e',
+        parent: 'b',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: "f",
-        parent: "c",
+        id: 'f',
+        parent: 'c',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "f",
-        parent: "c",
+        id: 'f',
+        parent: 'c',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: "e",
-        parent: "a",
+        id: 'e',
+        parent: 'a',
         position: 2
       )
     ]
@@ -324,6 +324,57 @@ describe TreeDelta do
 
     operations = do_transform(to, from)
 
-    expect(operations.to_a).to eq []
+    expect(operations.to_a).to eq [
+      TreeDelta::Operation.new(
+        type: :detach, 
+        id: 'g'
+      ),
+      TreeDelta::Operation.new(
+        type: :detach, 
+        id: 'f'
+      ),
+      TreeDelta::Operation.new(
+        type: :detach, 
+        id: 'c'
+      ),
+      TreeDelta::Operation.new(
+        type: :detach, 
+        id: 'e'
+      ),
+      TreeDelta::Operation.new(
+        type: :detach, 
+        id: 'd'
+      ),
+      TreeDelta::Operation.new(
+        type: :attach, 
+        id: 'c', 
+        parent: 'a', 
+        position: 0
+      ),
+      TreeDelta::Operation.new(
+        type: :attach, 
+        id: 'e', 
+        parent: 'c', 
+        position: 0
+      ),
+      TreeDelta::Operation.new(
+        type: :attach, 
+        id: 'f', 
+        parent: 'b', 
+        position: 0
+      ),
+      TreeDelta::Operation.new(
+        type: :attach,
+        id: 'g', 
+        parent: 'b', 
+        position: 1
+      ),
+      TreeDelta::Operation.new(
+        type: :attach, 
+        id: 'd', 
+        parent: 'a', 
+        position: 2
+      )
+    ]
   end
 end
