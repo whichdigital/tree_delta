@@ -25,9 +25,7 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :delete,
-        id: 'd',
-        parent: 'b',
-        position: 0
+        id: 'd'
       )
     ]
   end
@@ -46,9 +44,7 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :delete,
-        id: 'g',
-        parent: 'c',
-        position: 1
+        id: 'g'
       )
     ]
   end
@@ -67,21 +63,7 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :delete,
-        id: 'e',
-        parent: 'b',
-        position: 1
-      ),
-      TreeDelta::Operation.new(
-        type: :delete,
-        id: 'd',
-        parent: 'b',
-        position: 0
-      ),
-      TreeDelta::Operation.new(
-        type: :delete,
-        id: 'b',
-        parent: 'a',
-        position: 1
+        id: 'b'
       )
     ]
   end
@@ -94,45 +76,7 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :delete,
-        id: 'e',
-        parent: 'b',
-        position: 1
-      ),
-      TreeDelta::Operation.new(
-        type: :delete,
-        id: 'd',
-        parent: 'b',
-        position: 0
-      ),
-      TreeDelta::Operation.new(
-        type: :delete,
-        id: 'b',
-        parent: 'a',
-        position: 1
-      ),
-      TreeDelta::Operation.new(
-        type: :delete,
-        id: 'g',
-        parent: 'c',
-        position: 1
-      ),
-      TreeDelta::Operation.new(
-        type: :delete,
-        id: 'f',
-        parent: 'c',
-        position: 0
-      ),
-      TreeDelta::Operation.new(
-        type: :delete,
-        id: 'c',
-        parent: 'a',
-        position: 0
-      ),
-      TreeDelta::Operation.new(
-        type: :delete,
-        id: 'a',
-        parent: '',
-        position: 0
+        id: 'a'
       )
     ]
   end
