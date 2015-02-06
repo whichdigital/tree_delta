@@ -11,7 +11,7 @@ describe TreeDelta do
     ')
   end
 
-  it 'can delete first and add a node to its sibling' do
+  it 'can delete first leaf node and add a node to its sibling' do
     to = AsciiTree.parse('
             (  a  )
             /     \
