@@ -20,7 +20,7 @@ describe TreeDelta do
              e   f   g
     ')
 
-    operations = do_transform(to, from)
+    operations = described_class.new(from: from, to: to)
 
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
@@ -79,7 +79,7 @@ describe TreeDelta do
          d       f   g
     ')
 
-    operations = do_transform(to, from)
+    operations = described_class.new(from: from, to: to)
 
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
@@ -138,7 +138,7 @@ describe TreeDelta do
          d   e       g
     ')
 
-    operations = do_transform(to, from)
+    operations = described_class.new(from: from, to: to)
 
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
@@ -197,7 +197,7 @@ describe TreeDelta do
          f   g
     ')
 
-    operations = do_transform(to, from)
+    operations = described_class.new(from: from, to: to)
 
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
@@ -226,7 +226,7 @@ describe TreeDelta do
          e     g
     ')
 
-    operations = do_transform(to, from)
+    operations = described_class.new(from: from, to: to)
 
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
@@ -255,7 +255,7 @@ describe TreeDelta do
          f   g
     ')
 
-    operations = do_transform(to, from)
+    operations = described_class.new(from: from, to: to)
 
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
@@ -284,7 +284,7 @@ describe TreeDelta do
          d   e
     ')
 
-    operations = do_transform(to, from)
+    operations = described_class.new(from: from, to: to)
 
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
