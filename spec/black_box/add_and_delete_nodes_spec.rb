@@ -27,9 +27,7 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :delete,
-        id: 'd',
-        parent: 'b',
-        position: 0
+        id: 'd'
       ),
       TreeDelta::Operation.new(
         type: :create,
@@ -56,33 +54,17 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :delete,
-        id: 'f',
-        parent: 'c',
-        position: 0
+        id: 'f'
       ),
       TreeDelta::Operation.new(
         type: :delete,
-        id: 'e',
-        parent: 'b',
-        position: 1,
-      ),
-      TreeDelta::Operation.new(
-        type: :delete,
-        id: 'd',
-        parent: 'b',
-        position: 0,
-      ),
-      TreeDelta::Operation.new(
-        type: :delete,
-        id: 'b',
-        parent: 'a',
-        position: 0,
+        id: 'b'
       ),
       TreeDelta::Operation.new(
         type: :create,
         id: 'h',
         parent: 'g',
-        position: 0,
+        position: 0
       )
     ]
   end
@@ -101,27 +83,38 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :delete,
-        id: 'e',
-        parent: 'b',
-        position: 1
-      ),
-      TreeDelta::Operation.new(
-        type: :delete,
-        id: 'd',
-        parent: 'b',
-        position: 1,
-      ),
-      TreeDelta::Operation.new(
-        type: :delete,
-        id: 'b',
-        parent: 'a',
-        position: 0,
+        id: 'b'
       ),
       TreeDelta::Operation.new(
         type: :create,
         id: 'h',
         parent: 'a',
         position: 0
+      )
+    ]
+  end
+
+  it 'can delete a non-leaf node and a add a leaf node to the root as last child' do
+    to = AsciiTree.parse('
+            (  a  )
+               |  \
+               c   h
+              / \
+             f   g
+    ')
+
+    operations = do_transform(to, from)
+
+    expect(operations.to_a).to eq [
+      TreeDelta::Operation.new(
+        type: :delete,
+        id: 'b'
+      ),
+      TreeDelta::Operation.new(
+        type: :create,
+        id: 'h',
+        parent: 'a',
+        position: 1
       )
     ]
   end
