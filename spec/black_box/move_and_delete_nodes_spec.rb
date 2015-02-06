@@ -33,7 +33,7 @@ describe TreeDelta do
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'b',
+        id: 'c',
       ),
       TreeDelta::Operation.new(
         type: :detach,
@@ -45,7 +45,7 @@ describe TreeDelta do
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'b',
+        id: 'c',
         parent: 'a',
         position: 0
       ),
@@ -92,15 +92,19 @@ describe TreeDelta do
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'b',
+        id: 'c',
       ),
       TreeDelta::Operation.new(
         type: :delete,
         id: 'e',
       ),
       TreeDelta::Operation.new(
+        type: :detach,
+        id: 'd',
+      ),
+      TreeDelta::Operation.new(
         type: :attach,
-        id: 'b',
+        id: 'c',
         parent: 'a',
         position: 0
       ),
@@ -147,7 +151,7 @@ describe TreeDelta do
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'b',
+        id: 'c',
       ),
       TreeDelta::Operation.new(
         type: :detach,
@@ -159,7 +163,7 @@ describe TreeDelta do
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'b',
+        id: 'c',
         parent: 'a',
         position: 0
       ),

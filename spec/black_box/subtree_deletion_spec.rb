@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe TreeDelta do
   subject { described_class.new(from: from, to: to) }
@@ -17,11 +17,11 @@ describe TreeDelta do
     AsciiTree.parse('a')
   end
 
-  it "does not issue additional deletes for nodes in the subtree" do
+  it 'does not issue additional deletes for nodes in the subtree' do
     expect(subject.to_a).to eq [
       TreeDelta::Operation.new(
         type: :delete,
-        id:   "b"
+        id:   'b'
       ),
     ]
   end

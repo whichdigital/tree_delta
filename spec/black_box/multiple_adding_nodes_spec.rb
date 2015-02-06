@@ -29,14 +29,14 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :create,
-        id: "h",
-        parent: "d",
+        id: 'h',
+        parent: 'd',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :create,
-        id: "i",
-        parent: "h",
+        id: 'i',
+        parent: 'h',
         position: 0
       )
     ]
@@ -46,7 +46,7 @@ describe TreeDelta do
     to = AsciiTree.parse('
              (   a   )
              /       \
-            b         c
+          ( b )       c
           / | \      / \
          d  e  h    f   g
                |
@@ -58,14 +58,14 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :create,
-        id: "h",
-        parent: "b",
+        id: 'h',
+        parent: 'b',
         position: 2
       ),
       TreeDelta::Operation.new(
         type: :create,
-        id: "i",
-        parent: "h",
+        id: 'i',
+        parent: 'h',
         position: 0
       )
     ]
@@ -85,14 +85,14 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :create,
-        id: "h",
-        parent: "a",
+        id: 'h',
+        parent: 'a',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :create,
-        id: "i",
-        parent: "h",
+        id: 'i',
+        parent: 'h',
         position: 0
       )
     ]
@@ -112,14 +112,14 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :create,
-        id: "h",
-        parent: "b",
+        id: 'h',
+        parent: 'b',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :create,
-        id: "i",
-        parent: "b",
+        id: 'i',
+        parent: 'b',
         position: 2
       )
     ]
@@ -139,14 +139,14 @@ describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :create,
-        id: "h",
-        parent: "a",
+        id: 'h',
+        parent: 'a',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :create,
-        id: "i",
-        parent: "c",
+        id: 'i',
+        parent: 'c',
         position: 1
       )
     ]
