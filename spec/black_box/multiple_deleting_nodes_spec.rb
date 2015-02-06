@@ -2,27 +2,23 @@ require 'spec_helper'
 
 describe TreeDelta do
   let(:from) do
-    n('a',
-      n('b',
-        n('d'),
-        n('e')
-      ),
-      n('c',
-        n('f'),
-        n('g')
-      )
-    )
+    AsciiTree.parse('
+            (  a  )
+            /     \
+           b       c
+          / \     / \
+         d   e   f   g
+    ')
   end
 
   it 'can delete 2 leaf nodes with the same parent' do
-    to =
-      n('a',
-        n('b'),
-        n('c',
-          n('f'),
-          n('g')
-        )
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /     \
+           b       c
+                  / \
+                 f   g
+    ')
 
     operations = do_transform(to, from)
 
@@ -43,15 +39,13 @@ describe TreeDelta do
   end
 
   it 'can delete 2 leaf nodes from different parents' do
-    to =
-      n('a',
-        n('b',
-          n('e')
-        ),
-        n('c',
-          n('f')
-        )
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /     \
+           b       c
+            \     /
+             e   f
+    ')
 
     operations = do_transform(to, from)
 
@@ -72,8 +66,9 @@ describe TreeDelta do
   end
 
   it 'can delete 2 non-leaf nodes' do
-    to =
-      n('a')
+    to = AsciiTree.parse('
+            (  a  )
+    ')
 
     operations = do_transform(to, from)
 
@@ -94,12 +89,13 @@ describe TreeDelta do
   end
 
   it 'can delete a non-leaf node and a leaf node' do
-    to =
-      n('a',
-        n('c',
-          n('g')
-        )
-      )
+    to =  AsciiTree.parse('
+            (  a  )
+                  \
+                   c
+                    \
+                     g
+    ')
 
     operations = do_transform(to, from)
 

@@ -35,5 +35,6 @@ def n(id, *children)
 end
 
 def do_transform(to, from)
+  binding.pry
   described_class.new(from: from, to: to)
 end

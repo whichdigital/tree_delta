@@ -57,19 +57,6 @@ describe TreeDelta do
   end
 
   it 'can create a node onto a non-leaf node between siblings' do
-    to =
-      n('a',
-        n('b',
-          n('d'),
-          n('h'),
-          n('e')
-        ),
-        n('c',
-          n('f'),
-          n('g')
-        )
-      )
-
     to = AsciiTree.parse('
             (  a  )
             /     \

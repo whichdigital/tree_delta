@@ -2,30 +2,23 @@ require 'spec_helper'
 
 describe TreeDelta do
   let(:from) do
-    n('a',
-      n('b',
-        n('d'),
-        n('e')
-      ),
-      n('c',
-        n('f'),
-        n('g')
-      )
-    )
+    AsciiTree.parse('
+            (  a  )
+            /     \
+           b       c
+          / \     / \
+         d   e   f   g
+    ')
   end
 
   it 'can swap the order of the first 2 leaf sibling nodes and 2 non-leaf sibling nodes' do
-    to =
-      n('a',
-        n('c',
-          n('e'),
-          n('d')
-        ),
-        n('b',
-          n('f'),
-          n('g')
-        )
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /     \
+           c       b
+          / \     / \
+         e   d   f   g
+    ')
 
     operations = do_transform(to, from)
 
@@ -59,17 +52,13 @@ describe TreeDelta do
   end
 
   it 'can swap the order of the last 2 leaf sibling nodes and 2 non-leaf sibling nodes' do
-    to =
-      n('a',
-        n('c',
-          n('d'),
-          n('e')
-        ),
-        n('b',
-          n('g'),
-          n('f')
-        )
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /     \
+           c       b
+          / \     / \
+         d   e   g   f
+    ')
 
     operations = do_transform(to, from)
 
@@ -138,17 +127,13 @@ describe TreeDelta do
   end
 
   it 'can swap the order of the first and last 2 leaf sibling nodes' do
-    to =
-      n('a',
-        n('b',
-          n('e'),
-          n('d')
-        ),
-        n('c',
-          n('g'),
-          n('f')
-        )
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /     \
+           b       c
+          / \     / \
+         e   d   g   f
+    ')
 
     operations = do_transform(to, from)
 
@@ -181,17 +166,13 @@ describe TreeDelta do
   end
 
   it 'can swap the order of 2 leaf nodes with different parents' do
-    to =
-      n('a',
-        n('b',
-          n('d'),
-          n('f')
-        ),
-        n('c',
-          n('e'),
-          n('g')
-        )
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /     \
+           b       c
+          / \     / \
+         d   f   e   g
+    ')
 
     operations = do_transform(to, from)
 
@@ -224,17 +205,13 @@ describe TreeDelta do
   end
 
   it 'can swap the order of 2 leaf nodes and move a different leaf node to be a child of the root' do
-    to =
-      n('a',
-        n('b',
-          n('d')
-        ),
-        n('c',
-          n('g'),
-          n('f')
-        ),
-        n('e')
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /  |  \
+           b   c   e
+          /   / \
+         d   g   f
+    ')
 
     operations = do_transform(to, from)
 
@@ -267,17 +244,13 @@ describe TreeDelta do
   end
 
   it 'can swap the order of 2 leaf nodes with different parents and move a non-leaf node to be a child of the root' do
-    to =
-      n('a',
-        n('b',
-          n('f')
-        ),
-        n('c',
-          n('e'),
-          n('g')
-        ),
-        n('d')
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /  |  \
+           b   c   d
+          /   / \
+         f   e   g
+    ')
 
     operations = do_transform(to, from)
 
@@ -310,17 +283,13 @@ describe TreeDelta do
   end
 
   it 'can swap the order of 2 non-leaf nodes and move a leaf node to be a child of the root' do
-    to =
-      n('a',
-        n('c',
-          n('e')
-        ),
-        n('b',
-          n('f'),
-          n('g')
-        ),
-        n('d')
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /  |  \
+           c   b   d
+          /   / \
+         e   f   g
+    ')
 
     operations = do_transform(to, from)
 

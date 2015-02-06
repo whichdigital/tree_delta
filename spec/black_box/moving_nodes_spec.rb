@@ -2,30 +2,23 @@ require 'spec_helper'
 
 describe TreeDelta do
   let(:from) do
-    n('a',
-      n('b',
-        n('d'),
-        n('e')
-      ),
-      n('c',
-        n('f'),
-        n('g')
-      )
-    )
+    AsciiTree.parse('
+            (  a  )
+            /     \
+           b       c
+          / \     / \
+         d   e   f   g
+    ')
   end
 
   it 'can change order of a leaf nodes' do
-    to =
-      n('a',
-        n('b',
-          n('d'),
-          n('e')
-        ),
-        n('c',
-          n('g'),
-          n('f')
-        )
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /     \
+           b       c
+          / \     / \
+         d   e   g   f
+    ')
 
     operations = do_transform(to, from)
 
@@ -46,17 +39,13 @@ describe TreeDelta do
   end
 
   it 'can change order of a non-leaf nodes' do
-    to =
-      n('a',
-        n('c',
-          n('f'),
-          n('g')
-        ),
-        n('b',
-          n('d'),
-          n('e')
-        )
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /     \
+           c       b
+          / \     / \
+         f   g   d   e
+    ')
 
 
     operations = do_transform(to, from)
@@ -78,17 +67,13 @@ describe TreeDelta do
   end
 
   it 'can change order of a leaf nodes with different parents' do
-    to =
-      n('a',
-        n('b',
-          n('d'),
-          n('f')
-        ),
-        n('c',
-          n('e'),
-          n('g')
-        )
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /     \
+           b       c
+          / \     / \
+         d   f   e   g
+    ')
 
     operations = do_transform(to, from)
 
@@ -121,17 +106,13 @@ describe TreeDelta do
   end
 
   it 'can move a leaf node to be the last sibling of its parent' do
-    to =
-      n('a',
-        n('b',
-          n('d')
-        ),
-        n('c',
-          n('f'),
-          n('g')
-        ),
-        n('e')
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /  |  \
+           b   c   e
+          /   / \
+         d   f   g
+    ')
 
     operations = do_transform(to, from)
 
@@ -152,18 +133,13 @@ describe TreeDelta do
   end
 
   it 'can move a leaf node to be the middle sibling of its parent' do
-    to =
-      n('a',
-        n('b',
-          n('d'),
-          n('e')
-        ),
-        n('g'),
-        n('c',
-          n('f')
-        )
-      )
-
+    to = AsciiTree.parse('
+            (  a  )
+            /  |  \
+           b   g   c
+          / \     /
+         d   e   f
+    ')
     operations = do_transform(to, from)
 
     expect(operations.to_a).to eq [
@@ -183,18 +159,15 @@ describe TreeDelta do
   end
 
   it 'can move a leaf node to be the root node' do
-    to =
-      n('g',
-        n('a',
-          n('b',
-            n('d'),
-            n('e')
-          ),
-          n('c',
-            n('f')
-          )
-        )
-      )
+    to = AsciiTree.parse('
+               g
+               |
+            (  a  )
+            /     \
+           b       c
+          / \     /
+         d   f   e
+    ')
 
     operations = do_transform(to, from)
 
@@ -252,35 +225,25 @@ describe TreeDelta do
 
   it 'can move a node with leaf nodes to be its parents sibling' do
     # need a different from tree for this scenario
-    from =
-      n('a',
-        n('b',
-          n('d'),
-          n('e')
-        ),
-        n('c',
-          n('f'),
-          n('g',
-            n('h'),
-            n('i')
-          )
-        )
-      )
+    from = AsciiTree.parse('
+            (  a  )
+            /     \
+           b       c
+          / \     / \
+         d   e   f   g
+                    / \
+                   h   i
+    ')
 
-    to =
-      n('a',
-        n('b',
-          n('d'),
-          n('e')
-        ),
-        n('g',
-          n('h'),
-          n('i')
-        ),
-        n('c',
-          n('f')
-        )
-      )
+    to = AsciiTree.parse('
+            (     a     )
+            /     |     \
+           b      g      c
+          / \    / \    /
+         d   e  h   i  f
+
+
+    ')
 
     operations = do_transform(to, from)
 

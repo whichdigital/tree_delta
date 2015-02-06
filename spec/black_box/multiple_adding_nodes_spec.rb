@@ -2,34 +2,27 @@ require 'spec_helper'
 
 describe TreeDelta do
   let(:from) do
-    n('a',
-      n('b',
-        n('d'),
-        n('e')
-      ),
-      n('c',
-        n('f'),
-        n('g')
-      )
-    )
+    AsciiTree.parse('
+            (  a  )
+            /     \
+           b       c
+          / \     / \
+         d   e   f   g
+    ')
   end
 
   it 'can create 2 consecutive nodes to a leaf node' do
-    to =
-      n('a',
-        n('b',
-          n('d',
-            n('h',
-              n('i')
-            )
-          ),
-          n('e')
-        ),
-        n('c',
-          n('f'),
-          n('g')
-        )
-      )
+    to = AsciiTree.parse('
+            (  a  )
+            /     \
+           b       c
+          / \     / \
+         d   e   f   g
+        /
+       h
+      /
+     i
+    ')
 
     operations = do_transform(to, from)
 
@@ -50,20 +43,15 @@ describe TreeDelta do
   end
 
   it 'can create 2 consecutive nodes to a non-leaf node' do
-    to =
-      n('a',
-        n('b',
-          n('d'),
-          n('e'),
-          n('h',
-            n('i')
-          )
-        ),
-        n('c',
-          n('f'),
-          n('g')
-        )
-      )
+    to = AsciiTree.parse('
+             (   a   )
+             /       \
+            b         c
+          / | \      / \
+         d  e  h    f   g
+               |
+               i
+    ')
 
     operations = do_transform(to, from)
 
@@ -84,20 +72,13 @@ describe TreeDelta do
   end
 
   it 'can create 2 consecutive nodes to a root node' do
-    to =
-      n('a',
-        n('b',
-          n('d'),
-          n('e')
-        ),
-        n('h',
-          n('i')
-        ),
-        n('c',
-          n('f'),
-          n('g')
-        )
-      )
+    to = AsciiTree.parse('
+            (   a   )
+            /   |   \
+           b    h    c
+          / \   |   / \
+         d   e  i  f   g
+    ')
 
     operations = do_transform(to, from)
 
@@ -118,19 +99,13 @@ describe TreeDelta do
   end
 
   it 'can create 2 nodes in the middle of the children of a non-leaf node' do
-    to =
-      n('a',
-        n('b',
-          n('d'),
-          n('h'),
-          n('i'),
-          n('e')
-        ),
-        n('c',
-          n('f'),
-          n('g')
-        )
-      )
+    to = AsciiTree.parse('
+             (   a   )
+             /       \
+          (  b  )     c
+          / | | \    / \
+         d  h i  e  f   g
+    ')
 
     operations = do_transform(to, from)
 
@@ -151,19 +126,13 @@ describe TreeDelta do
   end
 
   it 'can create 2 nodes one to the root and one to a non-leaf node' do
-    to =
-      n('a',
-        n('b',
-          n('d'),
-          n('e')
-        ),
-        n('h'),
-        n('c',
-          n('f'),
-          n('i'),
-          n('g')
-        )
-      )
+    to = AsciiTree.parse('
+            (   a   )
+            /   |   \
+           b    h  ( c )
+          / \      / | \
+         d   e    f  i  g
+    ')
 
     operations = do_transform(to, from)
 
