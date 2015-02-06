@@ -154,7 +154,7 @@ describe TreeDelta do
             /     \
            b       c
           / \     /
-         d   f   e
+         d   e   f
     ')
 
     operations = do_transform(to, from)

@@ -59,12 +59,14 @@ class TreeDelta::Intermediate
   def attaches
     Enumerator.new do |y|
       moves.each do |node|
-        y.yield TreeDelta::Operation.new(
-          type:     :attach,
-          id:       node.id,
-          parent:   parent_id(node),
-          position: position(node)
-        )
+        unless root?(node)
+          y.yield TreeDelta::Operation.new(
+            type:     :attach,
+            id:       node.id,
+            parent:   parent_id(node),
+            position: position(node)
+          )
+        end
       end
     end
   end
@@ -156,6 +158,10 @@ class TreeDelta::Intermediate
 
   def to_node_for(from_node)
     to_nodes.detect { |n| n.id == from_node.id }
+  end
+
+  def root?(to_node)
+    !to_node.parent
   end
 
   def previous_root?(to_node)
