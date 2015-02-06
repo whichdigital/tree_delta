@@ -46,10 +46,12 @@ class TreeDelta::Intermediate
   def detaches
     Enumerator.new do |y|
       moves.each do |node|
-        y.yield TreeDelta::Operation.new(
-          type: :detach,
-          id:   node.id
-        )
+        unless previous_root?(node)
+          y.yield TreeDelta::Operation.new(
+            type: :detach,
+            id:   node.id
+          )
+        end
       end
     end
   end
@@ -154,6 +156,11 @@ class TreeDelta::Intermediate
 
   def to_node_for(from_node)
     to_nodes.detect { |n| n.id == from_node.id }
+  end
+
+  def previous_root?(to_node)
+    from_node = from_node_for(to_node)
+    !from_node.parent
   end
 
 end
