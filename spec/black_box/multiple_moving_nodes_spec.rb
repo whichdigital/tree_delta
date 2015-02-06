@@ -304,53 +304,53 @@ describe TreeDelta do
 
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
-        type: :detach, 
+        type: :detach,
         id: 'g'
       ),
       TreeDelta::Operation.new(
-        type: :detach, 
+        type: :detach,
         id: 'f'
       ),
       TreeDelta::Operation.new(
-        type: :detach, 
+        type: :detach,
         id: 'c'
       ),
       TreeDelta::Operation.new(
-        type: :detach, 
+        type: :detach,
         id: 'e'
       ),
       TreeDelta::Operation.new(
-        type: :detach, 
+        type: :detach,
         id: 'd'
       ),
       TreeDelta::Operation.new(
-        type: :attach, 
-        id: 'c', 
-        parent: 'a', 
-        position: 0
-      ),
-      TreeDelta::Operation.new(
-        type: :attach, 
-        id: 'e', 
-        parent: 'c', 
-        position: 0
-      ),
-      TreeDelta::Operation.new(
-        type: :attach, 
-        id: 'f', 
-        parent: 'b', 
+        type: :attach,
+        id: 'c',
+        parent: 'a',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'g', 
-        parent: 'b', 
+        id: 'e',
+        parent: 'c',
+        position: 0
+      ),
+      TreeDelta::Operation.new(
+        type: :attach,
+        id: 'f',
+        parent: 'b',
+        position: 0
+      ),
+      TreeDelta::Operation.new(
+        type: :attach,
+        id: 'g',
+        parent: 'b',
         position: 1
       ),
       TreeDelta::Operation.new(
-        type: :attach, 
-        id: 'd', 
-        parent: 'a', 
+        type: :attach,
+        id: 'd',
+        parent: 'a',
         position: 2
       )
     ]
