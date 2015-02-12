@@ -69,13 +69,6 @@ describe TreeDelta do
         value: 8
       )
     ]
-    # actual output:
-    #  <TreeDelta::Operation:0x007f802b330538 @type=:detach, @id="c">,
-    #  <TreeDelta::Operation:0x007f802b330678 @type=:detach, @id="b">,
-    #  <TreeDelta::Operation:0x007f802b331488 @type=:delete, @id="a{1}">,
-    #  <TreeDelta::Operation:0x007f802b32da18 @type=:create, @id="a{8}", @position=0>,
-    #  <TreeDelta::Operation:0x007f802b32d298 @type=:attach, @id="b", @position=0, @parent="a{8}">,
-    #  <TreeDelta::Operation:0x007f802b32d1a8 @type=:attach, @id="c", @position=1, @parent="a{8}">
   end
 
   it 'can update all nodes' do
@@ -304,16 +297,6 @@ describe TreeDelta do
         value: 8
       )
     ]
-    # actual output:
-    #  <TreeDelta::Operation:0x007fe83b9df618 @type=:detach, @id="g">,
-    #  <TreeDelta::Operation:0x007fe83b9dfb40 @type=:detach, @id="f">,
-    #  <TreeDelta::Operation:0x007fe83b9e6d50 @type=:detach, @id="b">,
-    #  <TreeDelta::Operation:0x007fe83b9ec1d8 @type=:delete, @id="a{1}">,
-    #  <TreeDelta::Operation:0x007fe83b9d4128 @type=:create, @id="c{3}", @position=0>,
-    #  <TreeDelta::Operation:0x007fe83b9cf128 @type=:attach, @id="b", @position=0, @parent="c{3}">,
-    #  <TreeDelta::Operation:0x007fe83b9cfe48 @type=:create, @id="a", @position=1, @value=8, @parent="c{3}">,
-    #  <TreeDelta::Operation:0x007fe83b9cecc8 @type=:attach, @id="f", @position=0, @parent="a">,
-    #  <TreeDelta::Operation:0x007fe83b9ceb38 @type=:attach, @id="g", @position=1, @parent="a">
   end
 
   it 'can delete and update a leaf node' do
