@@ -1,5 +1,7 @@
 ## Tree Delta
 
+[![Build Status](https://travis-ci.org/whichdigital/tree_delta.svg?branch=master)](https://travis-ci.org/whichdigital/tree_delta)
+
 Calculates the minimum set of operations that transform one tree into another.
 
 ## Overview
