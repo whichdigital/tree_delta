@@ -51,7 +51,7 @@ value object for a node. This is where you'd store the node's attributes.
 You must first define a node class with the following methods:
 
 ```ruby
-#id
+#identity
 Returns an identifier that uniquely identifies the node across trees.
 
 #parent
@@ -102,7 +102,7 @@ An operation is a simple object that describes a transformation.
 
 It can contain up to five pieces of information, as shown here:
 
-|          | type     | id       | value    | parent   | position |
+|          | type     | identity | value    | parent   | position |
 | --------:|:--------:|:--------:|:--------:|:--------:|:--------:|
 |   create | ✓        | ✓        | ✓        | ✓        | ✓        |
 |   update | ✓        | ✓        | ✓        |          |          |
@@ -116,7 +116,7 @@ Here is an example:
 operation.type
 #=> :create
 
-operation.id
+operation.identity
 #=> "foo"
 
 operation.value

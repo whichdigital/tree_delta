@@ -11,9 +11,9 @@ class TreeDelta::Intermediate
       additions.each do |node|
         y.yield TreeDelta::Operation.new(
           type:     :create,
-          id:       node.id,
+          identity: node.identity,
           value:    node.value,
-          parent:   parent_id(node),
+          parent:   parent_identity(node),
           position: position(node)
         )
       end
@@ -25,7 +25,7 @@ class TreeDelta::Intermediate
       updated_nodes.each do |node|
         y.yield TreeDelta::Operation.new(
           type:     :update,
-          id:       node.id,
+          identity: node.identity,
           value:    node.value,
         )
       end
@@ -36,8 +36,8 @@ class TreeDelta::Intermediate
     Enumerator.new do |y|
       normalised_deletions.each do |node|
         y.yield TreeDelta::Operation.new(
-          type: :delete,
-          id:   node.id
+          type:     :delete,
+          identity: node.identity
         )
       end
     end
@@ -48,8 +48,8 @@ class TreeDelta::Intermediate
       moves.each do |node|
         unless previous_root?(node)
           y.yield TreeDelta::Operation.new(
-            type: :detach,
-            id:   node.id
+            type:     :detach,
+            identity: node.identity
           )
         end
       end
@@ -62,8 +62,8 @@ class TreeDelta::Intermediate
         unless root?(node)
           y.yield TreeDelta::Operation.new(
             type:     :attach,
-            id:       node.id,
-            parent:   parent_id(node),
+            identity: node.identity,
+            parent:   parent_identity(node),
             position: position(node)
           )
         end
@@ -106,11 +106,11 @@ class TreeDelta::Intermediate
   end
 
   def subtract(a, b)
-    a.reject { |e| b.any? { |f| e.id == f.id } }
+    a.reject { |e| b.any? { |f| e.identity == f.identity } }
   end
 
-  def parent_id(node)
-    node && node.parent ? node.parent.id : nil
+  def parent_identity(node)
+    node && node.parent ? node.parent.identity : nil
   end
 
   def position(node)
@@ -128,11 +128,11 @@ class TreeDelta::Intermediate
 
   def changed_parent?(from_node)
     to_node = to_node_for(from_node)
-    to_node && parent_id(to_node) != parent_id(from_node)
+    to_node && parent_identity(to_node) != parent_identity(from_node)
   end
 
   def normalised_position_changes
-    groups = position_changes.group_by { |n| parent_id(n) }
+    groups = position_changes.group_by { |n| parent_identity(n) }
 
     groups.map do |_, nodes|
       TreeDelta::Normaliser.normalise_position_changes(nodes)
@@ -148,16 +148,16 @@ class TreeDelta::Intermediate
     to_node = to_node_for(from_node)
 
     to_node &&
-      parent_id(from_node) == parent_id(to_node) &&
+      parent_identity(from_node) == parent_identity(to_node) &&
       position(from_node) != position(to_node)
   end
 
   def from_node_for(to_node)
-    from_nodes.detect { |n| n.id == to_node.id }
+    from_nodes.detect { |n| n.identity == to_node.identity }
   end
 
   def to_node_for(from_node)
-    to_nodes.detect { |n| n.id == from_node.id }
+    to_nodes.detect { |n| n.identity == from_node.identity }
   end
 
   def root?(to_node)

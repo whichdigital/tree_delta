@@ -1,20 +1,20 @@
 class TreeDelta::Operation
 
-  attr_reader :type, :id, :value, :parent, :position
+  attr_reader :type, :identity, :value, :parent, :position
 
-  def initialize(type:, id:, value: nil, parent: nil, position: nil)
+  def initialize(type:, identity:, value: nil, parent: nil, position: nil)
     @type     = type
-    @id       = id
+    @identity = identity
     @value    = value    if value
     @parent   = parent   if parent
     @position = position if position
   end
 
   def ==(other)
-    @type       == other.type   &&
-      @id       == other.id     &&
-      @value    == other.value  &&
-      @parent   == other.parent &&
+    @type       == other.type     &&
+      @identity == other.identity &&
+      @value    == other.value    &&
+      @parent   == other.parent   &&
       @position == other.position
   end
 

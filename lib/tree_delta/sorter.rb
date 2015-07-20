@@ -3,7 +3,7 @@ module TreeDelta::Sorter
     sorted_array = []
 
     enumerator.each do |object|
-      element = array.detect { |e| e.id == object.id }
+      element = array.detect { |e| e.identity == object.identity }
       sorted_array << element if element
     end
 

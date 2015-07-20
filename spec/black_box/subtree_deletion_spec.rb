@@ -21,7 +21,7 @@ RSpec.describe TreeDelta do
     expect(subject.to_a).to eq [
       TreeDelta::Operation.new(
         type: :delete,
-        id:   'b'
+        identity: 'b'
       ),
     ]
   end

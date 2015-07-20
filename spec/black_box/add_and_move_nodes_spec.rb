@@ -27,57 +27,57 @@ RSpec.describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'g',
+        identity: 'g',
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'f',
+        identity: 'f',
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'c',
+        identity: 'c',
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'e',
+        identity: 'e',
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'd',
+        identity: 'd',
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'c',
+        identity: 'c',
         parent: 'a',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'd',
+        identity: 'd',
         parent: 'c',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'e',
+        identity: 'e',
         parent: 'c',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'f',
+        identity: 'f',
         parent: 'b',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :create,
-        id: 'h',
+        identity: 'h',
         parent: 'f',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'g',
+        identity: 'g',
         parent: 'b',
         position: 1
       )
@@ -98,57 +98,57 @@ RSpec.describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'g',
+        identity: 'g',
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'f',
+        identity: 'f',
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'c',
+        identity: 'c',
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'e',
+        identity: 'e',
       ),
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'd',
+        identity: 'd',
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'c',
+        identity: 'c',
         parent: 'a',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'd',
+        identity: 'd',
         parent: 'c',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'e',
+        identity: 'e',
         parent: 'c',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'f',
+        identity: 'f',
         parent: 'b',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :create,
-        id: 'h',
+        identity: 'h',
         parent: 'b',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'g',
+        identity: 'g',
         parent: 'b',
         position: 2
       )
@@ -169,17 +169,17 @@ RSpec.describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'e'
+        identity: 'e'
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'e',
+        identity: 'e',
         parent: 'a',
         position: 2
       ),
       TreeDelta::Operation.new(
         type: :create,
-        id: 'h',
+        identity: 'h',
         parent: 'e',
         position: 0
       )
@@ -200,17 +200,17 @@ RSpec.describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'e'
+        identity: 'e'
       ),
       TreeDelta::Operation.new(
         type: :create,
-        id: 'h',
+        identity: 'h',
         parent: 'b',
         position: 1
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'e',
+        identity: 'e',
         parent: 'a',
         position: 2
       )
@@ -231,17 +231,17 @@ RSpec.describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :detach,
-        id: 'd'
+        identity: 'd'
       ),
       TreeDelta::Operation.new(
         type: :create,
-        id: 'h',
+        identity: 'h',
         parent: 'b',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'd',
+        identity: 'd',
         parent: 'a',
         position: 2
       )

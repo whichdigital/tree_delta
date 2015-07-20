@@ -15,7 +15,7 @@ RSpec.describe TreeDelta::Traversal do
     ')
   end
 
-  let(:ids) { subject.traverse(tree).map(&:id) }
+  let(:identities) { subject.traverse(tree).map(&:identity) }
 
   it "enumerates an empty array when given nil" do
     traversal = described_class.new(
@@ -36,7 +36,7 @@ RSpec.describe TreeDelta::Traversal do
       let(:order) { :pre }
 
       it "traverses in the correct order" do
-        expect(ids).to eq ["root", "a", "c", "d", "b", "e"]
+        expect(identities).to eq ["root", "a", "c", "d", "b", "e"]
       end
     end
 
@@ -44,7 +44,7 @@ RSpec.describe TreeDelta::Traversal do
       let(:order) { :post }
 
       it "traverses in the correct order" do
-        expect(ids).to eq ["c", "d", "a", "e", "b", "root"]
+        expect(identities).to eq ["c", "d", "a", "e", "b", "root"]
       end
     end
   end
@@ -56,7 +56,7 @@ RSpec.describe TreeDelta::Traversal do
       let(:order) { :pre }
 
       it "traverses in the correct order" do
-        expect(ids).to eq ["root", "b", "e", "a", "d", "c"]
+        expect(identities).to eq ["root", "b", "e", "a", "d", "c"]
       end
     end
 
@@ -64,7 +64,7 @@ RSpec.describe TreeDelta::Traversal do
       let(:order) { :post }
 
       it "traverses in the correct order" do
-        expect(ids).to eq ["e", "b", "d", "c", "a", "root"]
+        expect(identities).to eq ["e", "b", "d", "c", "a", "root"]
       end
     end
   end

@@ -8,3 +8,7 @@ RSpec.configure do |config|
   config.color = true
   config.formatter = :documentation
 end
+
+class AsciiTree::Node
+  alias :identity :id
+end

@@ -3,13 +3,13 @@ require "spec_helper"
 RSpec.describe TreeDelta do
 
   class Node
-    attr_reader :id, :children, :parent, :value
+    attr_reader :identity, :children, :parent, :value
 
     def initialize(first, children: [])
-      if Array === id
-        @id, @value = *first
+      if Array === identity
+        @identity, @value = *first
       else
-        @id, @value = *first, "value"
+        @identity, @value = *first, "value"
       end
 
       @children = children
@@ -52,14 +52,14 @@ RSpec.describe TreeDelta do
     end
 
     expect(operations).to eq [
-      TreeDelta::Operation.new(type: :detach, id: "e"),
-      TreeDelta::Operation.new(type: :detach, id: "d"),
-      TreeDelta::Operation.new(type: :detach, id: "a"),
-      TreeDelta::Operation.new(type: :delete, id: "alpha"),
-      TreeDelta::Operation.new(type: :create, id: "beta", value: "value", position: 0),
-      TreeDelta::Operation.new(type: :attach, id: "a", parent: "beta", position: 0),
-      TreeDelta::Operation.new(type: :attach, id: "d", parent: "a", position: 0),
-      TreeDelta::Operation.new(type: :attach, id: "e", parent: "beta", position: 1)
+      TreeDelta::Operation.new(type: :detach, identity: "e"),
+      TreeDelta::Operation.new(type: :detach, identity: "d"),
+      TreeDelta::Operation.new(type: :detach, identity: "a"),
+      TreeDelta::Operation.new(type: :delete, identity: "alpha"),
+      TreeDelta::Operation.new(type: :create, identity: "beta", value: "value", position: 0),
+      TreeDelta::Operation.new(type: :attach, identity: "a", parent: "beta", position: 0),
+      TreeDelta::Operation.new(type: :attach, identity: "d", parent: "a", position: 0),
+      TreeDelta::Operation.new(type: :attach, identity: "e", parent: "beta", position: 1)
     ]
   end
 end

@@ -28,9 +28,9 @@ RSpec.describe TreeDelta::Intermediate do
       expect(subject.creates).to be_an(Enumerator)
       expect(subject.creates.to_a).to match_array [
         TreeDelta::Operation.new(
-          type:    :create,
-          id:      "g",
-          parent:  "a",
+          type:     :create,
+          identity: "g",
+          parent:   "a",
           position: 3
         )
       ]
@@ -43,12 +43,12 @@ RSpec.describe TreeDelta::Intermediate do
       expect(subject.updates.to_a).to match_array [
         TreeDelta::Operation.new(
           type:  :update,
-          id:    "b",
+          identity: "b",
           value: 3,
         ),
         TreeDelta::Operation.new(
           type:  :update,
-          id:    "c",
+          identity: "c",
           value: 4
         ),
       ]
@@ -61,7 +61,7 @@ RSpec.describe TreeDelta::Intermediate do
       expect(subject.deletes.to_a).to match_array [
         TreeDelta::Operation.new(
           type: :delete,
-          id:   "d"
+          identity: "d"
         )
       ]
     end
@@ -73,23 +73,23 @@ RSpec.describe TreeDelta::Intermediate do
       expect(subject.detaches.to_a).to match_array [
         TreeDelta::Operation.new(
           type: :detach,
-          id:   "z",
+          identity: "z",
         ),
         TreeDelta::Operation.new(
           type: :detach,
-          id:   "x",
+          identity: "x",
         ),
         TreeDelta::Operation.new(
           type: :detach,
-          id:   "f",
+          identity: "f",
         ),
         TreeDelta::Operation.new(
           type: :detach,
-          id:   "e",
+          identity: "e",
         ),
         TreeDelta::Operation.new(
           type: :detach,
-          id:   "b",
+          identity: "b",
         )
       ]
     end
@@ -100,34 +100,34 @@ RSpec.describe TreeDelta::Intermediate do
       expect(subject.attaches).to be_an(Enumerator)
       expect(subject.attaches.to_a).to match_array [
         TreeDelta::Operation.new(
-          type:    :attach,
-          id:      "x",
-          parent:  "a",
-          position: 0
+          type:     :attach,
+          identity: "x",
+          parent:   "a",
+          position:  0
         ),
         TreeDelta::Operation.new(
-          type:    :attach,
-          id:      "z",
-          parent:  "x",
-          position: 0
+          type:     :attach,
+          identity: "z",
+          parent:   "x",
+          position:  0
         ),
         TreeDelta::Operation.new(
-          type:    :attach,
-          id:      "e",
-          parent:  "a",
-          position: 2
+          type:     :attach,
+          identity: "e",
+          parent:   "a",
+          position:  2
         ),
         TreeDelta::Operation.new(
-          type:    :attach,
-          id:      "b",
-          parent:  "e",
-          position: 0
+          type:     :attach,
+          identity: "b",
+          parent:   "e",
+          position:  0
         ),
         TreeDelta::Operation.new(
-          type:    :attach,
-          id:      "f",
-          parent:  "e",
-          position: 1
+          type:     :attach,
+          identity: "f",
+          parent:   "e",
+          position:  1
         )
       ]
     end

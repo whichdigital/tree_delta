@@ -27,7 +27,7 @@ RSpec.describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :create,
-        id: 'h',
+        identity: 'h',
         parent: 'd',
         position: 0
       )
@@ -49,7 +49,7 @@ RSpec.describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :create,
-        id: 'h',
+        identity: 'h',
         parent: 'c',
         position: 2
       )
@@ -70,7 +70,7 @@ RSpec.describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :create,
-        id: 'h',
+        identity: 'h',
         parent: 'b',
         position: 1
       )
@@ -91,7 +91,7 @@ RSpec.describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :create,
-        id: 'h',
+        identity: 'h',
         parent: 'a',
         position: 1
       )
@@ -112,7 +112,7 @@ RSpec.describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :create,
-        id: 'h',
+        identity: 'h',
         parent: 'a',
         position: 2
       )
@@ -134,12 +134,12 @@ RSpec.describe TreeDelta do
     expect(operations.to_a).to eq [
       TreeDelta::Operation.new(
         type: :create,
-        id: 'h',
+        identity: 'h',
         position: 0
       ),
       TreeDelta::Operation.new(
         type: :attach,
-        id: 'a',
+        identity: 'a',
         parent: 'h',
         position: 0
       )
