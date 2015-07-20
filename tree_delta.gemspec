@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "tree_delta"
-  s.version     = "1.0.0"
+  s.version     = "2.0.0"
   s.summary     = "Tree Delta"
   s.description = "Calculates the minimum set of operations that transform one tree into another."
   s.authors     = ["Chris Patuzzo", "Nick Haworth", "Jason Pernthaller"]
