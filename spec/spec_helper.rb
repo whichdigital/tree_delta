@@ -4,6 +4,7 @@ require "ascii_tree"
 require "tree_delta"
 
 RSpec.configure do |config|
+  config.disable_monkey_patching!
   config.color = true
   config.formatter = :documentation
 end

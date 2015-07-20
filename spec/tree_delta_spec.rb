@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe TreeDelta do
+RSpec.describe TreeDelta do
 
   class Node
     attr_reader :id, :children, :parent, :value

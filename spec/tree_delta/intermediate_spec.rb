@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe TreeDelta::Intermediate do
+RSpec.describe TreeDelta::Intermediate do
   subject { described_class.new(from: from, to: to) }
 
   let(:from) do

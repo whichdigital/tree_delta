@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe TreeDelta::Traversal do
+RSpec.describe TreeDelta::Traversal do
   subject do
     described_class.new(direction: direction, order: order)
   end

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe TreeDelta::Normaliser do
+RSpec.describe TreeDelta::Normaliser do
 
   describe ".normalise_position_changes" do
     let(:nodes) do

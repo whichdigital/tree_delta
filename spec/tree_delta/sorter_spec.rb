@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe TreeDelta::Sorter do
+RSpec.describe TreeDelta::Sorter do
 
   let(:array) do
     [

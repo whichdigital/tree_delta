@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TreeDelta do
+RSpec.describe TreeDelta do
   let(:from) do
     AsciiTree.parse('
             (  a  )

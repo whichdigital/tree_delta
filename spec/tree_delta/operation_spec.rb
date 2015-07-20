@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe TreeDelta::Operation do
+RSpec.describe TreeDelta::Operation do
 
   describe "equality" do
     it "returns true if the operations' attributes are equal" do
